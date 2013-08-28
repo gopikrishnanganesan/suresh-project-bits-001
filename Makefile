@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-Wall -O2
-COMMON=OffenseOps.o HelperUtil.o OffenseOpsSupport.o
+COMMON=OffenseOps.o HelperUtil.o OffenseOpsSupport.o TestUtil.o
 TESTOBJ=TestPopulateVehicles.o TestPopulateDrivers.o TestUpdateOffenses.o
 
 test : TestPopulateVehicles TestPopulateDrivers TestUpdateOffenses
@@ -25,6 +25,8 @@ TestPopulateVehicles.o : TestPopulateVehicles.c
 TestPopulateDrivers.o : TestPopulateDrivers.c
 
 TestUpdateOffenses.o : TestUpdateOffenses.c
+
+TestUtil.o : TestUtil.c
 
 
 
