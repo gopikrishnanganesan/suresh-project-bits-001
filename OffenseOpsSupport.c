@@ -133,12 +133,13 @@ insertRevoked( RevokeList*  apRevokeList,
                Vehicle*     apVehicles ) {
     RevokeList* startNode = apRevokeList;
 
-    if ( apDriver == NULL ) {
+    if ( apDriver == NULL || apVehicles == NULL ) {
         return apRevokeList;
     }
 
     if ( apRevokeList == NULL ) {
         apRevokeList = createRevoked( apDriver, apVehicles );
+        return apRevokeList;
     } else {
         while ( apRevokeList->pNext != NULL ) {
             apRevokeList = apRevokeList->pNext;

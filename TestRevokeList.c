@@ -4,7 +4,7 @@
 #include "OffenseOps.h"
 #include "TestUtil.h"
 
-#define TESTED_API  "updateOffenses"
+#define TESTED_API  "markRevokedDrivers"
 
 
 void testCase01();
@@ -19,7 +19,9 @@ void testCase01() {
 
     Vehicle*    pVehicles   = NULL;
     Driver*     pDrivers    = NULL;
+    Driver*     pTmpDrvs    = NULL;
     int         count       = 0;
+    RevokeList* pRevoked    = NULL;
 
     pVehicles   = populateVehicles( "owners.txt" );
     if ( pVehicles == NULL ) {
@@ -45,17 +47,33 @@ void testCase01() {
                  "Driver list destroyed after updating offense" );
     }
 
+    pTmpDrvs = pDrivers;
     while ( pDrivers != NULL ) {
         printf( "DRIVER: %s LICENSE: %s SCORE: %d\n", pDrivers->ownerUID,
                 pDrivers->licenseNum, pDrivers->score );
         pDrivers = pDrivers->pNextDriver;
         count++;
     }
-    if ( count == 50 ) {
-        success( __FUNCTION__, TESTED_API,
-                 "Score updating success" );
-    } else {
+    pDrivers = pTmpDrvs;
+
+    if ( count != 50 ) {
         failure( __FUNCTION__, TESTED_API,
                  "Score updation failure" );
     }
+
+    pRevoked = markRevokedDrivers( pDrivers, pVehicles );
+    if ( pRevoked == NULL ) {
+        failure( __FUNCTION__, TESTED_API,
+                 "Revoke list empty" );
+    }
+
+    count = 0;
+    while ( pRevoked != NULL ) {
+        printf( "REVOKE DRIVER: %s LICENSE: %s VEHICLE: %s\n",
+                pRevoked->ownerUID, pRevoked->licenseNum,
+                pRevoked->vehicleNum );
+        pRevoked = pRevoked->pNext;
+        count++;
+    }
+    success( __FUNCTION__, TESTED_API, "Revoke list passed all tests" );
 }

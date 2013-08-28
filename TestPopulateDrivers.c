@@ -41,12 +41,12 @@ void testCase02() {
     Driver* pDrivers = NULL;
     pDrivers = populateDrivers( "nonexistent.txt" );
 
-    if ( pDrivers != NULL ) {
+    if ( pDrivers == NULL ) {
         success( __FUNCTION__, TESTED_API,
-                 "Driver list is not empty for invalid file" );
+                 "Driver list is empty for invalid file" );
     } else {
         failure( __FUNCTION__, TESTED_API,
-                 "Driver list is empty for invalid file" );
+                 "Driver list is not empty for invalid file" );
     }
 }
 
@@ -72,7 +72,7 @@ void testCase04() {
     pDrivers = populateDrivers( "drivers.txt" );
 
     while ( pDrivers != NULL ) {
-        printf( "DRIVER: %s, LICENSE: %s", pDrivers->ownerUID,
+        printf( "DRIVER: %s, LICENSE: %s\n", pDrivers->ownerUID,
                 pDrivers->licenseNum );
         pDrivers = pDrivers->pNextDriver;
         count++;
