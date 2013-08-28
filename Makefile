@@ -36,4 +36,4 @@ TestUtil.o : TestUtil.c
 
 
 clean:
-	rm -f *o TestPopulateVehicles TestPopulateDrivers TestUpdateOffenses
+	rm -f *o TestPopulateVehicles TestPopulateDrivers TestUpdateOffenses TestRevokeList
