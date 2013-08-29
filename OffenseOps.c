@@ -128,7 +128,6 @@ RevokeList* markRevokedDrivers( Driver*     apDrivers,
     while ( pRunner != NULL ) {
         if ( pRunner->score <= REVOKE_CUTOFF_SCORE ) {
             pRevokeList = insertRevoked( pRevokeList, pRunner, apVehicles );
-            printf( ">>> %d", pRevokeList );
         }
         pRunner = pRunner->pNextDriver;
     }

@@ -18,6 +18,7 @@ int main( int argc, char* argv [] )
 void testCase01() {
 
     Vehicle*    pVehicles   = NULL;
+    Vehicle*    pTmpVehcls  = NULL;
     Driver*     pDrivers    = NULL;
     Driver*     pTmpDrvs    = NULL;
     int         count       = 0;
@@ -29,11 +30,31 @@ void testCase01() {
                  "Unable to construct vehicle list. Test populateVehicles" );
     }
 
+    pTmpVehcls = pVehicles;
+    printf( "OWNERS LIST:\n===========\n" );
+    while ( pTmpVehcls != NULL  ) {
+        printf( "DRIVER: %s VEHICLE: %s\n", pTmpVehcls->ownerUID,
+                pTmpVehcls->vehicleNum );
+        pTmpVehcls = pTmpVehcls->pNextVehicle;
+    }
+    pTmpVehcls = pVehicles;
+
     pDrivers    = populateDrivers( "drivers.txt" );
     if ( pDrivers == NULL ) {
         failure( __FUNCTION__, TESTED_API,
                  "Unable to construct driver list. Test populateDrivers" );
     }
+
+    pTmpDrvs = pDrivers;
+    count    = 0;
+    printf( "INITIAL SCORE LIST:\n==================\n" );
+    while ( pTmpDrvs != NULL ) {
+        printf( "DRIVER: %s LICENSE: %s SCORE: %d\n", pTmpDrvs->ownerUID,
+                pTmpDrvs->licenseNum, pTmpDrvs->score );
+        pTmpDrvs = pTmpDrvs->pNextDriver;
+        count++;
+    }
+    pTmpDrvs = pDrivers;
 
     updateOffenses( "offenses.txt", pDrivers, pVehicles );
 
@@ -48,13 +69,15 @@ void testCase01() {
     }
 
     pTmpDrvs = pDrivers;
-    while ( pDrivers != NULL ) {
-        printf( "DRIVER: %s LICENSE: %s SCORE: %d\n", pDrivers->ownerUID,
-                pDrivers->licenseNum, pDrivers->score );
-        pDrivers = pDrivers->pNextDriver;
+    count    = 0;
+    printf( "SCORE AFTER OFFENSE:\n===================\n" );
+    while ( pTmpDrvs != NULL ) {
+        printf( "DRIVER: %s LICENSE: %s SCORE: %d\n", pTmpDrvs->ownerUID,
+                pTmpDrvs->licenseNum, pTmpDrvs->score );
+        pTmpDrvs = pTmpDrvs->pNextDriver;
         count++;
     }
-    pDrivers = pTmpDrvs;
+    pTmpDrvs = pDrivers;
 
     if ( count != 50 ) {
         failure( __FUNCTION__, TESTED_API,
@@ -68,6 +91,7 @@ void testCase01() {
     }
 
     count = 0;
+    printf( "REVOKE LIST:\n===========\n" );
     while ( pRevoked != NULL ) {
         printf( "REVOKE DRIVER: %s LICENSE: %s VEHICLE: %s\n",
                 pRevoked->ownerUID, pRevoked->licenseNum,

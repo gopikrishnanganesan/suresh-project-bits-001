@@ -154,6 +154,7 @@ RevokeList*
 createRevoked( Driver*      apDriver,
                Vehicle*     apVehicles ) {
     RevokeList* pRevoked = ( RevokeList* ) malloc ( sizeof ( RevokeList ) );
+    char*       vehicleNum = NULL;
     if ( pRevoked == NULL ) {
         perror( "Cannot allocate memory for revoked list" );
         return NULL;
@@ -161,8 +162,15 @@ createRevoked( Driver*      apDriver,
 
     strcpy( pRevoked->ownerUID, apDriver->ownerUID );
     strcpy( pRevoked->licenseNum, apDriver->licenseNum );
-    strcpy( pRevoked->vehicleNum,
-            lookupVehicle( apDriver->ownerUID, apVehicles ) );
+
+    vehicleNum = lookupVehicle( apDriver->ownerUID, apVehicles );
+    if ( vehicleNum == NULL ) {
+        strcpy( pRevoked->vehicleNum, "" );
+    } else {
+        strcpy( pRevoked->vehicleNum, vehicleNum );
+    }
+
+    pRevoked->pNext = NULL;
 
     return pRevoked;
 }
