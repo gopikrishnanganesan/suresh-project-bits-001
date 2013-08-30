@@ -1,3 +1,8 @@
+/**
+ * File     : TestUpdateOffenses.c
+ * Type     : Internal Unit Test
+ * Comment  : Test case for updateOffenses API
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "Offense.h"
@@ -5,7 +10,6 @@
 #include "TestUtil.h"
 
 #define TESTED_API  "updateOffenses"
-
 
 void testCase01();
 
@@ -58,4 +62,7 @@ void testCase01() {
         failure( __FUNCTION__, TESTED_API,
                  "Score updation failure" );
     }
+
+    freeDriverList( pDrivers );
+    freeVehicleList( pVehicles );
 }

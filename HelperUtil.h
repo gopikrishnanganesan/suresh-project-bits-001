@@ -1,17 +1,33 @@
+/**
+ * File     : HelperUtil.h
+ * Type     : Internal Interface
+ * Comment  : Prototypes of Helper functions used by Offense operations
+ */
 #ifndef _HELPER_UTIL_H_
 #define _HELPER_UTIL_H_
 
-int validateOwnerUID( char* apOwnerUID );
+/** Validates owner UID and returns SUCCESS if valid, FAILURE otherwise */
+int
+validateOwnerUID( char* apOwnerUID );
 
-int validateVehicleNum( char* apVehicleNum );
+/** Validates vehicle number and returns SUCCESS if valid, FAILURE otherwise */
+int
+validateVehicleNum( char* apVehicleNum );
 
-int validateLicenseNum( char* apLicenseNum );
+/** Validates license number and returns SUCCESS if valid, FAILURE otherwise */
+int
+validateLicenseNum( char* apLicenseNum );
 
-char* readEntireFile( char* apFileName );
+/** Reads entire file contents into heap and returns a pointer to it */
+char*
+readEntireFile( char* apFileName );
 
-int isEmptyLine( char* apLine );
+/** Checks if an line is emtpy and return TRUE if so, FALSE otherwise */
+int
+isEmptyLine( char* apLine );
 
-int codeToScore( char* apScore );
-
+/** Converts the given offense code to offense score that can be subtracted */
+int
+codeToScore( char* apScore );
 
 #endif // _HELPER_UTIL_H_

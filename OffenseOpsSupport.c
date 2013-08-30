@@ -1,8 +1,13 @@
+/**
+ * File     : OffenseOpsSupport.c
+ * Type     : Internal Implementation
+ * Comment  : Supporting functions used by Offense operations
+ */
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "Offense.h"
-#include "OffenseOps.h"
+#include "OffenseOpsSupport.h"
 #include "OffenseConfig.h"
 
 

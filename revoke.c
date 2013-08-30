@@ -1,6 +1,13 @@
+/**
+ * File     : revoke.c
+ * Type     : Main driver
+ * Comment  : Entry point for the application
+ */
 #include <stdio.h>
 #include "Offense.h"
 #include "OffenseOps.h"
+
+#define OUTPUT_FILE     "revoke.txt"
 
 int main( int argc, char* argv[] ) {
 
@@ -44,7 +51,7 @@ int main( int argc, char* argv[] ) {
     pRevoked    = markRevokedDrivers( pDrivers, pVehicles );
     pRunner     = pRevoked;
 
-    pOutputFile = fopen( "revoke.txt", "w" );
+    pOutputFile = fopen( OUTPUT_FILE, "w" );
 
     while( pRunner != NULL ) {
         fprintf( pOutputFile, "%s,%s,%s\n", pRunner->ownerUID,
@@ -53,6 +60,9 @@ int main( int argc, char* argv[] ) {
     }
 
     fclose( pOutputFile );
+    freeRevokeList( pRevoked );
+    freeDriverList( pDrivers );
+    freeVehicleList( pVehicles );
 
     return 0;
 }

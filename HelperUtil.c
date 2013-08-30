@@ -1,33 +1,37 @@
+/**
+ * File     : HelperUtil.c
+ * Type     : Internal Implementation
+ * Comment  : Helper functions used by Offense operations
+ */
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "HelperUtil.h"
+#include "OffenseConfig.h"
 
 int validateOwnerUID( char* apOwnerUID ) {
     if ( strcmp( apOwnerUID, "" ) != 0 && strlen( apOwnerUID ) == 12 ) {
-        return 1;
+        return SUCCESS;
     } else {
-        return 0;
+        return FAILURE;
     }
 }
 
 int validateVehicleNum( char* apVehicleNum ) {
     if ( strcmp( apVehicleNum, "" ) != 0 && strlen( apVehicleNum ) == 7 ) {
-        return 1;
+        return SUCCESS;
     } else {
-        return 0;
+        return FAILURE;
     }
 }
 
 int validateLicenseNum( char* apLicenseNum ) {
     if ( strcmp( apLicenseNum, "" ) != 0 && strlen( apLicenseNum ) == 10 ) {
-        return 1;
+        return SUCCESS;
     } else {
-        return 0;
+        return FAILURE;
     }
-
 }
-
 
 char* readEntireFile( char* apFileName ) {
     FILE*           pFile       = NULL;
@@ -59,9 +63,9 @@ char* readEntireFile( char* apFileName ) {
 
 int isEmptyLine( char* apLine ) {
     if ( strcmp( apLine, "" ) == 0 ) {
-        return 1;
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 

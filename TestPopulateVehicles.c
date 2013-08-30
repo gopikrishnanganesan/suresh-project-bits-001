@@ -1,3 +1,8 @@
+/**
+ * File     : TestPopulateVehicles.c
+ * Type     : Internal Unit Test
+ * Comment  : Test case for populateVehicles API
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "Offense.h"
@@ -6,13 +11,10 @@
 
 #define TESTED_API  "populateVehicles"
 
-
 void testCase01();
 void testCase02();
 void testCase03();
 void testCase04();
-
-
 
 int main( int argc, char* argv [] )
 {
