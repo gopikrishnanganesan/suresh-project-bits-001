@@ -34,6 +34,8 @@ void testCase01() {
         failure( __FUNCTION__, TESTED_API,
                  "Driver list file not read" );
     }
+
+    freeDriverList( pDrivers );
 }
 
 void testCase02() {
@@ -48,6 +50,8 @@ void testCase02() {
         failure( __FUNCTION__, TESTED_API,
                  "Driver list is not empty for invalid file" );
     }
+
+    freeDriverList( pDrivers );
 }
 
 void testCase03() {
@@ -62,6 +66,8 @@ void testCase03() {
         failure( __FUNCTION__, TESTED_API,
                  "Default driver list file is not being read" );
     }
+
+    freeDriverList( pDrivers );
 }
 
 
@@ -74,7 +80,7 @@ void testCase04() {
     while ( pDrivers != NULL ) {
         printf( "DRIVER: %s, LICENSE: %s\n", pDrivers->ownerUID,
                 pDrivers->licenseNum );
-        pDrivers = pDrivers->pNextDriver;
+        pDrivers = pDrivers->pNext;
         count++;
     }
 
@@ -85,4 +91,6 @@ void testCase04() {
         failure( __FUNCTION__, TESTED_API,
                  "Driver list is not being completely read" );
     }
+
+    freeDriverList( pDrivers );
 }

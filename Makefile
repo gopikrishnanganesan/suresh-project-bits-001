@@ -3,7 +3,11 @@ CFLAGS=-Wall -O2
 COMMON=OffenseOps.o HelperUtil.o OffenseOpsSupport.o TestUtil.o
 TESTOBJ=TestPopulateVehicles.o TestPopulateDrivers.o TestUpdateOffenses.o TestRevokeList.o
 
+all : revoke
+
 test : TestPopulateVehicles TestPopulateDrivers TestUpdateOffenses TestRevokeList
+
+revoke : revoke.o $(COMMON)
 
 TestPopulateVehicles: TestPopulateVehicles.o $(COMMON)
 	$(CC) -o $@ $^
@@ -32,8 +36,7 @@ TestUpdateOffenses.o : TestUpdateOffenses.c
 
 TestUtil.o : TestUtil.c
 
-
-
+revoke.o : revoke.c
 
 clean:
-	rm -f *o TestPopulateVehicles TestPopulateDrivers TestUpdateOffenses TestRevokeList
+	rm -f *o TestPopulateVehicles TestPopulateDrivers TestUpdateOffenses TestRevokeList revoke

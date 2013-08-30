@@ -48,7 +48,7 @@ void testCase01() {
     while ( pDrivers != NULL ) {
         printf( "DRIVER: %s LICENSE: %s SCORE: %d\n", pDrivers->ownerUID,
                 pDrivers->licenseNum, pDrivers->score );
-        pDrivers = pDrivers->pNextDriver;
+        pDrivers = pDrivers->pNext;
         count++;
     }
     if ( count == 50 ) {

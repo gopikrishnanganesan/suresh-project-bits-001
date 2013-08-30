@@ -17,6 +17,16 @@ RevokeList*
 markRevokedDrivers( Driver*     apDrivers,
                     Vehicle*    apVehicles );
 
+
+void
+freeRevokeList( RevokeList* apRevoked );
+
+void
+freeDriverList( Driver* apDrivers );
+
+void
+freeVehicleList( Vehicle* apVehicles );
+
 // Supporting functions
 Vehicle*
 createVehicle( char*    apOwnerUID,

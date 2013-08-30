@@ -36,6 +36,8 @@ void testCase01() {
                  "Vehicle list file not read" );
     }
 
+    freeVehicleList( pVehicles );
+
 }
 
 void testCase02() {
@@ -50,6 +52,8 @@ void testCase02() {
         failure( __FUNCTION__, TESTED_API,
                  "Vehicle list not empty for an invalid file" );
     }
+
+    freeVehicleList( pVehicles );
 }
 
 void testCase03() {
@@ -64,6 +68,8 @@ void testCase03() {
         failure( __FUNCTION__, TESTED_API,
                  "Default vehicle list file is not being read" );
     }
+
+    freeVehicleList( pVehicles );
 }
 
 
@@ -76,7 +82,7 @@ void testCase04() {
     while ( pVehicles != NULL ) {
         printf( "OWNER: %s, VEHICLE: %s\n", pVehicles->ownerUID,
                 pVehicles->vehicleNum );
-        pVehicles = pVehicles->pNextVehicle;
+        pVehicles = pVehicles->pNext;
         count++;
     }
 
@@ -87,4 +93,6 @@ void testCase04() {
         failure( __FUNCTION__, TESTED_API,
                  "Vehicle list file was not read completely" );
     }
+
+    freeVehicleList( pVehicles );
 }

@@ -19,7 +19,7 @@ createVehicle( char*    apOwnerUID,
 
     strcpy( pVehicle->ownerUID , apOwnerUID );
     strcpy( pVehicle->vehicleNum, apVehicleNum );
-    pVehicle->pNextVehicle = NULL;
+    pVehicle->pNext = NULL;
 
     return pVehicle;
 }
@@ -34,10 +34,10 @@ insertVehicle( Vehicle* apVehicles,
         return apVehicles;
     } else {
         // TODO: Ordered Insertion Logic for the linked list
-        while ( apVehicles->pNextVehicle != NULL ) {
-            apVehicles = apVehicles->pNextVehicle;
+        while ( apVehicles->pNext != NULL ) {
+            apVehicles = apVehicles->pNext;
         }
-        apVehicles->pNextVehicle = createVehicle( apOwnerUID, apVehicleNum );
+        apVehicles->pNext = createVehicle( apOwnerUID, apVehicleNum );
         return startNode;
     }
 }
@@ -52,10 +52,10 @@ insertDriver( Driver*   apDrivers,
         return apDrivers;
     } else {
         // TODO: Ordered Insertion Logic for the linked list;
-        while ( apDrivers->pNextDriver != NULL ) {
-            apDrivers = apDrivers->pNextDriver;
+        while ( apDrivers->pNext != NULL ) {
+            apDrivers = apDrivers->pNext;
         }
-        apDrivers->pNextDriver = createDriver( apOwnerUID, apLicenseNum );
+        apDrivers->pNext = createDriver( apOwnerUID, apLicenseNum );
         return startNode;
     }
 }
@@ -72,7 +72,7 @@ createDriver( char*     apOwnerUID,
     strcpy( pDriver->ownerUID , apOwnerUID );
     strcpy( pDriver->licenseNum, apLicenseNum );
     pDriver->score          = INITIAL_DRIVER_SCORE;
-    pDriver->pNextDriver    = NULL;
+    pDriver->pNext    = NULL;
 
     return pDriver;
 }
@@ -88,7 +88,7 @@ lookupUID( char*    apVehicleNum,
         if ( strcmp( apVehicleNum, pRunner->vehicleNum ) == 0 ) {
             return pRunner->ownerUID;
         }
-        pRunner = pRunner->pNextVehicle;
+        pRunner = pRunner->pNext;
     }
     return NULL;
 }
@@ -102,9 +102,9 @@ lookupVehicle( char*    apOwnerUID,
     }
     while ( pRunner != NULL ) {
         if ( strcmp( apOwnerUID, pRunner->ownerUID ) == 0 ) {
-            return pRunner->ownerUID;
+            return pRunner->vehicleNum;
         }
-        pRunner = pRunner->pNextVehicle;
+        pRunner = pRunner->pNext;
     }
     return NULL;
 }
@@ -122,7 +122,7 @@ int updateOffense( char*    apOwnerUID,
             pRunner->score = pRunner->score + aOffenseScore;
             return SUCCESS;
         }
-        pRunner = pRunner->pNextDriver;
+        pRunner = pRunner->pNext;
     }
     return FAILURE;
 }
@@ -175,3 +175,44 @@ createRevoked( Driver*      apDriver,
     return pRevoked;
 }
 
+void
+freeRevokeList( RevokeList* apRevoked ) {
+
+    RevokeList* pNodeToFree = NULL;
+    if ( apRevoked == NULL ) {
+        return;
+    }
+    while ( apRevoked->pNext != NULL ) {
+        pNodeToFree = apRevoked;
+        apRevoked   = apRevoked->pNext;
+        free( pNodeToFree );
+    }
+}
+
+void
+freeDriverList( Driver* apDrivers ) {
+
+    Driver* pNodeToFree = NULL;
+    if ( apDrivers == NULL ) {
+        return;
+    }
+    while ( apDrivers->pNext != NULL ) {
+        pNodeToFree = apDrivers;
+        apDrivers   = apDrivers->pNext;
+        free( pNodeToFree );
+    }
+}
+
+void
+freeVehicleList( Vehicle* apVehicles ) {
+
+    Vehicle* pNodeToFree = NULL;
+    if ( apVehicles == NULL ) {
+        return;
+    }
+    while ( apVehicles->pNext != NULL ) {
+        pNodeToFree = apVehicles;
+        apVehicles  = apVehicles->pNext;
+        free( pNodeToFree );
+    }
+}

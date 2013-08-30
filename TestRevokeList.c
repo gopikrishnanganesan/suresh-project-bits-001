@@ -35,7 +35,7 @@ void testCase01() {
     while ( pTmpVehcls != NULL  ) {
         printf( "DRIVER: %s VEHICLE: %s\n", pTmpVehcls->ownerUID,
                 pTmpVehcls->vehicleNum );
-        pTmpVehcls = pTmpVehcls->pNextVehicle;
+        pTmpVehcls = pTmpVehcls->pNext;
     }
     pTmpVehcls = pVehicles;
 
@@ -51,7 +51,7 @@ void testCase01() {
     while ( pTmpDrvs != NULL ) {
         printf( "DRIVER: %s LICENSE: %s SCORE: %d\n", pTmpDrvs->ownerUID,
                 pTmpDrvs->licenseNum, pTmpDrvs->score );
-        pTmpDrvs = pTmpDrvs->pNextDriver;
+        pTmpDrvs = pTmpDrvs->pNext;
         count++;
     }
     pTmpDrvs = pDrivers;
@@ -74,7 +74,7 @@ void testCase01() {
     while ( pTmpDrvs != NULL ) {
         printf( "DRIVER: %s LICENSE: %s SCORE: %d\n", pTmpDrvs->ownerUID,
                 pTmpDrvs->licenseNum, pTmpDrvs->score );
-        pTmpDrvs = pTmpDrvs->pNextDriver;
+        pTmpDrvs = pTmpDrvs->pNext;
         count++;
     }
     pTmpDrvs = pDrivers;
@@ -99,5 +99,11 @@ void testCase01() {
         pRevoked = pRevoked->pNext;
         count++;
     }
+
     success( __FUNCTION__, TESTED_API, "Revoke list passed all tests" );
+
+    freeDriverList( pDrivers );
+    freeVehicleList( pVehicles );
+    freeRevokeList( pRevoked );
+
 }
