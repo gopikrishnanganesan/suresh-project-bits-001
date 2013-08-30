@@ -8,7 +8,8 @@
 
 
 /**
- *
+ * Singly-linked-list to hold vehicle number <-> owner UID mapping. This
+ * structure will be populated from owners.txt
  */
 typedef struct Vehicle {
     char            vehicleNum[VEHICLE_NUM_SZ+1];
@@ -16,6 +17,10 @@ typedef struct Vehicle {
     struct Vehicle* pNext;
 } Vehicle;
 
+/**
+ * Singly-linked-list to hold owner UID <-> license number mapping. This
+ * structure will be populated from drivers.txt
+ */
 typedef struct Driver {
     char            ownerUID[OWNER_UID_SZ+1];
     char            licenseNum[LICENSE_NUM_SZ+1];
@@ -23,13 +28,15 @@ typedef struct Driver {
     struct Driver*  pNext;
 } Driver;
 
+/**
+ * Singly-linked-list to hold owner UID <-> license number <-> vehicle number
+ * mapping of all the drives revoked due to offenses
+ */
 typedef struct RevokeList {
     char            ownerUID[OWNER_UID_SZ+1];
     char            licenseNum[LICENSE_NUM_SZ+1];
     char            vehicleNum[VEHICLE_NUM_SZ+1];
     struct RevokeList*  pNext;
 } RevokeList;
-
-
 
 #endif // _OFFENSE_H_
