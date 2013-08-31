@@ -30,4 +30,7 @@ isEmptyLine( char* apLine );
 int
 codeToScore( char* apScore );
 
+char *
+strSep(char **stringp, const char *delim);
+
 #endif // _HELPER_UTIL_H_

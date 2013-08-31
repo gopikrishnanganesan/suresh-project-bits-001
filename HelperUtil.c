@@ -78,3 +78,36 @@ int codeToScore( char* apScore ) {
         return 0;
     }
 }
+
+/**
+ *******************************************************************************
+ * Some versions of glibc doesn't have strsep implementation. Instead of using
+ * the "fearsome strtok", I'm copying an implementation of strsep from github:
+ * https://github.com/yasm/yasm/blob/master/libyasm/strsep.c
+ *******************************************************************************
+ */
+char *
+strSep(char **stringp, const char *delim)
+{
+    register char *s;
+    register const char *spanp;
+    register int c, sc;
+    char *tok;
+
+    if ((s = *stringp) == NULL)
+            return (NULL);
+    for (tok = s;;) {
+            c = *s++;
+            spanp = delim;
+            do {
+                    if ((sc = *spanp++) == c) {
+                            if (c == 0)
+                                    s = NULL;
+                            else
+                                    s[-1] = 0;
+                            *stringp = s;
+                            return (tok);
+                    }
+            } while (sc != 0);
+    }
+}

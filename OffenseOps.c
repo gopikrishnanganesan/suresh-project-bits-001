@@ -28,13 +28,13 @@ Vehicle* populateVehicles( char* apOwnersFile ) {
         return NULL;
     }
 
-    while ( ( pLineBuffer = strsep( &pFileBuffer, "\n" ) ) != NULL ) {
+    while ( ( pLineBuffer = strSep( &pFileBuffer, "\n" ) ) != NULL ) {
         if ( isEmptyLine( pLineBuffer ) ) {
             continue;
         }
 
-        pOwnerUID   = strsep( &pLineBuffer, "," );
-        pVehicleNum = strsep( &pLineBuffer, "," );
+        pOwnerUID   = strSep( &pLineBuffer, "," );
+        pVehicleNum = strSep( &pLineBuffer, "," );
 
         if ( !validateOwnerUID( pOwnerUID ) ||
              !validateVehicleNum( pVehicleNum ) ) {
@@ -65,13 +65,13 @@ Driver* populateDrivers( char* apDriversFile ) {
         return NULL;
     }
 
-    while ( ( pLineBuffer = strsep( &pFileBuffer, "\n" ) ) != NULL ) {
+    while ( ( pLineBuffer = strSep( &pFileBuffer, "\n" ) ) != NULL ) {
         if ( isEmptyLine( pLineBuffer ) ) {
             continue;
         }
 
-        pOwnerUID   = strsep( &pLineBuffer, "," );
-        pLicenseNum = strsep( &pLineBuffer, "," );
+        pOwnerUID   = strSep( &pLineBuffer, "," );
+        pLicenseNum = strSep( &pLineBuffer, "," );
 
         if ( !validateOwnerUID( pOwnerUID ) ||
              !validateLicenseNum( pLicenseNum ) ) {
@@ -105,13 +105,13 @@ void updateOffenses( char*      apOffensesFile,
         return;
     }
 
-    while ( ( pLineBuffer = strsep( &pFileBuffer, "\n" ) ) != NULL ) {
+    while ( ( pLineBuffer = strSep( &pFileBuffer, "\n" ) ) != NULL ) {
         if ( isEmptyLine( pLineBuffer ) ) {
             continue;
         }
 
-        pVehicleNum     = strsep( &pLineBuffer, " " );
-        pOffenseCode    = strsep( &pLineBuffer, " " );
+        pVehicleNum     = strSep( &pLineBuffer, " " );
+        pOffenseCode    = strSep( &pLineBuffer, " " );
         offenseScore    = codeToScore( pOffenseCode );
 
         pOwnerUID       = lookupUID( pVehicleNum, apVehicles );
