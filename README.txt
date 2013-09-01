@@ -1,9 +1,9 @@
 ================================================================================
 
 STUDENT INFORMATION:
-Name        : GopiKrishnan Ganesan
-ID Number   : 246537
-Email       : gopikrishnan.ganesan@gmail.com
+Name        : Suresh Kumar
+ID Number   : 2013HZ11001
+Email       : 2013hz11001@wilp.bits-pilani.ac.in
 ================================================================================
 
 FILES DESCRIPTION:

@@ -6,7 +6,7 @@
 #ifndef _OFFENSE_CONFIG_H_
 #define _OFFENSE_CONFIG_H_
 
-#define DEFAULT_OWNERS_FILE     "owners.txt"    /** Default owners input file */
+#define DEFAULT_OWNERS_FILE     "owner.txt"     /** Default owners input file */
 #define DEFAULT_DRIVERS_FILE    "drivers.txt"   /** Default drivers input file */
 #define DEFAULT_OFFENSES_FILE   "offenses.txt"  /** Default offenses input file */
 #define INITIAL_DRIVER_SCORE    10              /** Intial driver score */

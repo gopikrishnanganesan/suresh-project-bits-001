@@ -13,8 +13,7 @@
 
 void testCase01();
 
-int main( int argc, char* argv [] )
-{
+int main() {
     testCase01();
     return 0;
 }
@@ -28,7 +27,7 @@ void testCase01() {
     int         count       = 0;
     RevokeList* pRevoked    = NULL;
 
-    pVehicles   = populateVehicles( "owners.txt" );
+    pVehicles   = populateVehicles( "owner.txt" );
     if ( pVehicles == NULL ) {
         failure( __FUNCTION__, TESTED_API,
                  "Unable to construct vehicle list. Test populateVehicles" );

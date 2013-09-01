@@ -16,8 +16,7 @@ void testCase02();
 void testCase03();
 void testCase04();
 
-int main( int argc, char* argv [] )
-{
+int main() {
     testCase01();
     testCase02();
     testCase03();
@@ -28,7 +27,7 @@ int main( int argc, char* argv [] )
 void testCase01() {
 
     Vehicle* pVehicles = NULL;
-    pVehicles = populateVehicles( "owners.txt" );
+    pVehicles = populateVehicles( "owner.txt" );
 
     if ( pVehicles != NULL ) {
         success( __FUNCTION__, TESTED_API,
@@ -79,7 +78,7 @@ void testCase04() {
 
     Vehicle* pVehicles = NULL;
     int      count     = 0;
-    pVehicles = populateVehicles( "owners.txt" );
+    pVehicles = populateVehicles( "owner.txt" );
 
     while ( pVehicles != NULL ) {
         printf( "OWNER: %s, VEHICLE: %s\n", pVehicles->ownerUID,

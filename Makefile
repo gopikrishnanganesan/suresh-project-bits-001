@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -O2
+CFLAGS=-W -Wall -O2
 COMMON=OffenseOps.o HelperUtil.o OffenseOpsSupport.o TestUtil.o
 TESTOBJ=TestPopulateVehicles.o TestPopulateDrivers.o TestUpdateOffenses.o TestRevokeList.o
 

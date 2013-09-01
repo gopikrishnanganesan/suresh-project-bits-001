@@ -16,8 +16,7 @@ void testCase02();
 void testCase03();
 void testCase04();
 
-int main( int argc, char* argv [] )
-{
+int main() {
     testCase01();
     testCase02();
     testCase03();
